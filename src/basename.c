@@ -8,13 +8,14 @@
 
 int main(int argc, char **argv)
 {
+	process_version(argc, argv);
 	if (argc > 1)
 	{
 		char *name = argv[1];
 		size_t i = strlen(name) - 1;
 		while (i > 0 && name[i] != '/')
 			i--;
-		printf("%s\n", name + i + 1);
+		printf("%s\n", name + i);
 	}
 	else
 	{

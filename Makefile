@@ -3,10 +3,11 @@ D3M0N_BIN_DIR	= ../bin/
 SRC_DIR			= src
 BUILD_DIR		= build
 C_FILES			= $(shell find "$(SRC_DIR)" -type f -name "*.c")
-BIN_FILES		= $(C_FILES:src/%.c=$(BUILD_DIR)/%)
+BIN_FILES		= $(C_FILES:$(SRC_DIR)/%.c=$(BUILD_DIR)/%)
 
 CC				= d3c
-C_FLAGS			= -Wall -Wextra -Werror -Iinclude -I$(BUILD_DIR)
+C_FLAGS			= -Wall -Wextra -Werror -Iinclude -I$(BUILD_DIR) \
+				  -DUTILITIES_LIST="$(C_FILES:$(SRC_DIR)/%.c=\"%\", )"
 
 MAJOR_VERSION	= 1.0
 VERSION_FILE	= VERSION
@@ -54,7 +55,6 @@ clean:
 	rm -rf $(BUILD_DIR)
 
 fclean: clean
-	rm -f $(VERSION_FILE)
 
 re:
 	@rm -rf $(BUILD_DIR)

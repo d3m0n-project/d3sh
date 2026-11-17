@@ -1,19 +1,24 @@
 #include "stdio.hpp"
-
-#define PROGRAM_NAME	"rmdir"
-#define PROGRAM_AUTHOR	"0x262d"
-
+#define PROGRAM_NAME "rmdir"
+#define PROGRAM_AUTHOR "0x262d"
 #include "config.h"
-
 int main(int argc, char **argv)
 {
-	if (argc > 1)
-	{
-		(void)argv;
-	}
-	else
+	process_version(argc, argv);
+	if (argc < 2)
 	{
 		fprintf(stderr, "%s: missing operand\n", PROGRAM_NAME);
 		return 1;
 	}
+
+	int status = 0;
+	for (int i = 1; i < argc; i++)
+	{
+		if (rmdir(argv[i]) != 0)
+		{
+			fprintf(stderr, "%s: failed to remove %s\n", PROGRAM_NAME, argv[i]);
+			status = 1;
+		}
+	}
+	return status;
 }
