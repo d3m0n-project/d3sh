@@ -21,7 +21,8 @@ fclean: clean
 re: fclean all
 
 export: all
-	find "$(BUILD_DIR)" -type f -exec cp {} "$(D3M0N_BIN_DIR)"
+	@find "$(BUILD_DIR)" -type f -exec cp {} "$(D3M0N_BIN_DIR)" ';'
+	@printf "\033[32mExported successfully!\033[0m\n"
 
 re_export: fclean export
 
