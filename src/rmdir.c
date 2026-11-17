@@ -3,11 +3,13 @@
 #define PROGRAM_NAME	"rmdir"
 #define PROGRAM_AUTHOR	"0x262d"
 
+#include "config.h"
+
 int main(int argc, char **argv)
 {
 	if (argc > 1)
 	{
-		
+		(void)argv;
 	}
 	else
 	{
