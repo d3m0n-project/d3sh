@@ -35,10 +35,7 @@ def resolve_define(name: str, defines: dict[str, str], default: Any = None, seen
 
     seen.add(name)
     value = defines[name]
-    tokens = re.findall(
-        r'"(?:\\.|[^"\\])*"|[A-Za-z_]\w*',
-        value
-    )
+    tokens = re.findall(r'"(?:\\.|[^"\\])*"|[A-Za-z_]\w*', value)
 
     result = []
     for token in tokens:
@@ -62,7 +59,7 @@ def get_define(name: str, defines: dict[str, str], default: Any = None) -> Any:
     return resolve_define(name, defines, default)
 
 
-def main(readme: TextIOWrapper[Any]) -> None:
+def main(readme) -> None:
     programs = {}
 
     for file in os.listdir(SRC_DIR):
@@ -72,6 +69,7 @@ def main(readme: TextIOWrapper[Any]) -> None:
         program_name = os.path.basename(file).lower().removesuffix('.c')
         with open(os.path.join(SRC_DIR, file), 'r', encoding='utf-8') as f:
             content = f.read()
+            #content = content.replace('\\n', '\n').replace('\\t', '\t')
 
         defines = get_defines(content)
         programs[program_name] = {
@@ -79,15 +77,28 @@ def main(readme: TextIOWrapper[Any]) -> None:
             "author": get_define("PROGRAM_AUTHOR", defines, "unknown author"),
             "description": get_define("PROGRAM_DESCRIPTION", defines),
             "usage": get_define("PROGRAM_USAGE", defines),
-            "examples": get_define("PROGRAM_EXAMPLES", defines, []),
-            "args": get_define("PROGRAM_ARGUMENTS", defines, [])
+            "examples": get_define("PROGRAM_EXAMPLES", defines, "").split('\n'),
+            "args": get_define("PROGRAM_ARGUMENTS", defines, "").split('\n')
         }
-        print(f"- [{program_name}](./{program_name}), {programs[program_name]['description']}", file=readme)
+        print(f"- [{program_name}](./{program_name}.md) {programs[program_name]['description'] or ''}", file=readme)
 
 		# write utility file
-        with open(os.path.join(DOCS_DIR, f"{program_name}.md")) as utility:
-            print("# d3sh Shell Utilities\n", file=utility)
-        
+        with open(os.path.join(DOCS_DIR, f"{program_name}.md"), 'w') as utility:
+            print(f"# {program_name.title()}\n", file=utility)
+
+            infos = programs[program_name]
+            print(f"Usage: {infos['usage']}", file=utility) if infos['usage'] else ...
+            print(infos['description'], file=utility, end='\n\n') if infos['description'] else ...
+
+            print(f"Mandatory arguments to long options are mandatory for short options too.", file=utility)  if len(infos['args']) > 0 else ...
+            for arg in infos['args']:
+                print(f"  {arg}", file=utility)
+
+            print("\nExamples:", file=utility)
+            for example in infos['examples']:
+                print(f"  {example}", file=utility)
+
+            print("\nd3sh Shell Utils: <https://github.com/d3m0n-project/d3sh>", file=utility, end='')        
 
     print(programs['basename'])
 
