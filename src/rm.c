@@ -1,7 +1,11 @@
 #include "stdio.hpp"
 
-#define PROGRAM_NAME "rm"
-#define PROGRAM_AUTHOR "0x262d"
+#define PROGRAM_NAME		"rm"
+#define PROGRAM_AUTHOR		"0x262d"
+#define PROGRAM_DESCRIPTION	"Remove one or more files or paths."
+#define PROGRAM_USAGE		"rm FILE ..."
+#define PROGRAM_ARGUMENTS	"FILE - path to remove; multiple paths are accepted."
+#define PROGRAM_EXAMPLES	"rm old.txt\nrm first.tmp second.tmp"
 
 #include "config.h"
 

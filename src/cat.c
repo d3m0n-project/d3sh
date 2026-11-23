@@ -1,8 +1,12 @@
 #include "stdio.hpp"
 #include "sys.h"
 
-#define PROGRAM_NAME	"cat"
-#define PROGRAM_AUTHOR	"0x262d"
+#define PROGRAM_NAME		"cat"
+#define PROGRAM_AUTHOR		"0x262d"
+#define PROGRAM_DESCRIPTION	"Write file contents to standard output. With no files, copy standard input to standard output."
+#define PROGRAM_USAGE		"cat [FILE ...]"
+#define PROGRAM_ARGUMENTS	"FILE - file to read; multiple files are printed in sequence."
+#define PROGRAM_EXAMPLES	"cat notes.txt\ncat first.txt second.txt"
 
 #include "config.h"
 

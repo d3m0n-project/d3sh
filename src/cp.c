@@ -1,7 +1,11 @@
 #include "stdio.hpp"
 
-#define PROGRAM_NAME "cp"
-#define PROGRAM_AUTHOR "0x262d"
+#define PROGRAM_NAME		"cp"
+#define PROGRAM_AUTHOR		"0x262d"
+#define PROGRAM_DESCRIPTION	"Copy one file to another, creating or replacing the destination."
+#define PROGRAM_USAGE		"cp SOURCE DESTINATION"
+#define PROGRAM_ARGUMENTS	"SOURCE - file to copy.\nDESTINATION - path to create or truncate."
+#define PROGRAM_EXAMPLES	"cp notes.txt notes.bak\ncp /tmp/input.txt ./input.txt"
 #include "config.h"
 
 int main(int argc, char **argv)

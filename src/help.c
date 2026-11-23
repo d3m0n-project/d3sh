@@ -1,8 +1,12 @@
 #include "stdio.hpp"
 #include "stdlib.h"
 
-#define PROGRAM_NAME	"help"
-#define PROGRAM_AUTHOR	"0x262d"
+#define PROGRAM_NAME		"help"
+#define PROGRAM_AUTHOR		"0x262d"
+#define PROGRAM_DESCRIPTION	"List the utilities included in this build, along with the build version and date."
+#define PROGRAM_USAGE		"help"
+#define PROGRAM_ARGUMENTS	""
+#define PROGRAM_EXAMPLES	"help"
 
 #include "config.h"
 

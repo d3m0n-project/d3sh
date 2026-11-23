@@ -1,7 +1,11 @@
 #include "stdio.hpp"
 
-#define PROGRAM_NAME "touch"
-#define PROGRAM_AUTHOR "0x262d"
+#define PROGRAM_NAME		"touch"
+#define PROGRAM_AUTHOR		"0x262d"
+#define PROGRAM_DESCRIPTION	"Create each named file if it does not exist. Existing files are opened without changing their contents."
+#define PROGRAM_USAGE		"touch FILE ..."
+#define PROGRAM_ARGUMENTS	"FILE - path to create or open; multiple paths are accepted."
+#define PROGRAM_EXAMPLES	"touch notes.txt\ntouch one.txt two.txt"
 
 #include "config.h"
 

@@ -1,7 +1,11 @@
 #include "stdio.hpp"
 
-#define PROGRAM_NAME "uptime"
-#define PROGRAM_AUTHOR "0x262d"
+#define PROGRAM_NAME		"uptime"
+#define PROGRAM_AUTHOR		"0x262d"
+#define PROGRAM_DESCRIPTION	"Print the time since boot in seconds."
+#define PROGRAM_USAGE		"uptime"
+#define PROGRAM_ARGUMENTS	""
+#define PROGRAM_EXAMPLES	"uptime"
 
 #include "config.h"
 

@@ -1,6 +1,12 @@
 #include "stdio.hpp"
-#define PROGRAM_NAME "rmdir"
-#define PROGRAM_AUTHOR "0x262d"
+
+#define PROGRAM_NAME	"rmdir"
+#define PROGRAM_AUTHOR		"0x262d"
+#define PROGRAM_DESCRIPTION	"Remove one or more directories."
+#define PROGRAM_USAGE		"rmdir DIRECTORY ..."
+#define PROGRAM_ARGUMENTS	"DIRECTORY - directory path to remove; multiple paths are accepted."
+#define PROGRAM_EXAMPLES	"rmdir empty-folder\nrmdir old-a old-b"
+
 #include "config.h"
 int main(int argc, char **argv)
 {

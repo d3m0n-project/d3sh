@@ -1,7 +1,11 @@
 #include "stdio.hpp"
 
-#define PROGRAM_NAME "ls"
-#define PROGRAM_AUTHOR "0x262d"
+#define PROGRAM_NAME		"ls"
+#define PROGRAM_AUTHOR		"0x262d"
+#define PROGRAM_DESCRIPTION	"List directory entries. Defaults to the current directory."
+#define PROGRAM_USAGE		"ls [DIRECTORY]"
+#define PROGRAM_ARGUMENTS	"DIRECTORY - directory to list; defaults to the current directory."
+#define PROGRAM_EXAMPLES	"ls\nls /programs/bin"
 
 #include "config.h"
 

@@ -1,7 +1,11 @@
 #include "stdio.hpp"
 
-#define PROGRAM_NAME "uname"
-#define PROGRAM_AUTHOR "0x262d"
+#define PROGRAM_NAME		"uname"
+#define PROGRAM_AUTHOR		"0x262d"
+#define PROGRAM_DESCRIPTION	"Print system information. Options -s and -a are accepted and currently return the same information."
+#define PROGRAM_USAGE		"uname [-s | -a]"
+#define PROGRAM_ARGUMENTS	"-s - request the system name.\n-a - request all available system information."
+#define PROGRAM_EXAMPLES	"uname\nuname -s\nuname -a"
 #include "config.h"
 
 int main(int argc, char **argv)

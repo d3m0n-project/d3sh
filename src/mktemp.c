@@ -1,7 +1,11 @@
 #include "stdio.hpp"
 
-#define PROGRAM_NAME "mktemp"
-#define PROGRAM_AUTHOR "0x262d"
+#define PROGRAM_NAME		"mktemp"
+#define PROGRAM_AUTHOR		"0x262d"
+#define PROGRAM_DESCRIPTION	"Create an empty temporary file and print its path. A custom template must end in six X characters."
+#define PROGRAM_USAGE		"mktemp [TEMPLATE]"
+#define PROGRAM_ARGUMENTS	"TEMPLATE - optional file path ending in XXXXXX; defaults to /tmp/d3sh-XXXXXX."
+#define PROGRAM_EXAMPLES	"mktemp\nmktemp /tmp/session-XXXXXX"
 
 #include "config.h"
 

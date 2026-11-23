@@ -1,7 +1,11 @@
 #include "stdio.hpp"
 
-#define PROGRAM_NAME "echo"
-#define PROGRAM_AUTHOR "0x262d"
+#define PROGRAM_NAME		"echo"
+#define PROGRAM_AUTHOR		"0x262d"
+#define PROGRAM_DESCRIPTION	"Print words separated by spaces and a newline; -n suppresses the trailing newline."
+#define PROGRAM_USAGE		"echo [-n] [STRING ...]"
+#define PROGRAM_ARGUMENTS	"-n - suppress the trailing newline.\nSTRING - text to print."
+#define PROGRAM_EXAMPLES	"echo hello world\necho -n ready"
 
 #include "config.h"
 

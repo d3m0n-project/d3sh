@@ -2,6 +2,10 @@
 
 #define PROGRAM_NAME "kill"
 #define PROGRAM_AUTHOR "0x262d"
+#define PROGRAM_DESCRIPTION "Check whether a process can be signaled by sending signal 0. This utility does not currently select a terminating signal."
+#define PROGRAM_USAGE "kill PID"
+#define PROGRAM_ARGUMENTS "PID - positive process ID to check."
+#define PROGRAM_EXAMPLES "kill 42"
 
 #include "config.h"
 

@@ -3,16 +3,13 @@
 
 #define PROGRAM_NAME			"basename"
 #define PROGRAM_AUTHOR			"0x262d"
-
-#define PROGRAM_USAGE			PROGRAM_NAME " NAME"
-#define PROGRAM_EXAMPLES		PROGRAM_NAME " path/to/file.ext        -> file.ext\n" \
-								PROGRAM_NAME " /programs/bin/lua       -> lua\n" \
-								PROGRAM_NAME " /config                 -> config\n"
-#define PROGRAM_DESCRIPTION		"Print NAME with any leading directory components removed."
+#define PROGRAM_DESCRIPTION		"Print a path with its leading directory components removed."
+#define PROGRAM_USAGE			"basename NAME"
+#define PROGRAM_ARGUMENTS		"NAME - path whose final component is printed."
+#define PROGRAM_EXAMPLES		"basename path/to/file.txt      -> file.txt\n" \
+								"basename /programs/bin/lua     -> prints lua"
 
 #include "config.h"
-
-#define PROGRAM_ARGUMENTS		PROGRAM_ARGUMENTS_VERSION "\n"
 
 int main(int argc, char **argv)
 {
