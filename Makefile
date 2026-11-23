@@ -67,4 +67,7 @@ export: all
 
 re_export: re export
 
-.PHONY: all clean fclean re export re_export FORCE
+docs:
+	python3 docs/build.py
+
+.PHONY: all clean fclean re export re_export docs FORCE

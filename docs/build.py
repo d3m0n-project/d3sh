@@ -2,12 +2,14 @@
 """Generate utility manuals from PROGRAM_* documentation macros in src/*.c."""
 
 import ast
+import html
 import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 SRC_DIR = ROOT / "src"
 DOCS_DIR = Path(__file__).resolve().parent
+SITE_DIR = DOCS_DIR / "site"
 
 
 def get_defines(content: str) -> dict[str, str]:
@@ -67,6 +69,31 @@ def write_program_page(slug: str, info: dict[str, object]) -> None:
     (DOCS_DIR / f"{slug}.md").write_text("\n".join(lines), encoding="utf-8")
 
 
+def build_site() -> None:
+    """Render the generated Markdown manuals as a self-contained Pages site."""
+    try:
+        import markdown
+    except ImportError as error:
+        raise SystemExit("The Markdown package is required; install it with: python3 -m pip install Markdown") from error
+
+    SITE_DIR.mkdir(parents=True, exist_ok=True)
+    stylesheet = """<style>
+:root{color-scheme:light dark;font:16px/1.65 system-ui,sans-serif}body{max-width:920px;margin:0 auto;padding:2rem 1.25rem}a{color:#5aa9ff}pre{overflow:auto;padding:1rem;border-radius:.5rem;background:#17191d}code{font-family:ui-monospace,monospace}h1,h2{line-height:1.2}header{margin-bottom:2rem;border-bottom:1px solid #777;padding-bottom:1rem}header a{text-decoration:none;font-weight:700}
+</style>"""
+    for markdown_file in sorted(DOCS_DIR.glob("*.md")):
+        slug = "index" if markdown_file.name == "README.md" else markdown_file.stem
+        source = markdown_file.read_text(encoding="utf-8")
+        rendered = markdown.markdown(source, extensions=["fenced_code", "codehilite", "tables"])
+        rendered = re.sub(r'href="([^\"]+)\.md(#[^\"]*)?"', r'href="\1.html\2"', rendered)
+        title_match = re.search(r"^#\s+(.+)$", source, re.MULTILINE)
+        title = html.escape(title_match.group(1) if title_match else "d3sh Shell Utilities")
+        document = f"""<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{title}</title>{stylesheet}</head>
+<body><header><a href="index.html">d3sh Shell Utilities</a></header><main>{rendered}</main></body></html>
+"""
+        (SITE_DIR / f"{slug}.html").write_text(document, encoding="utf-8")
+
+
 def main() -> None:
     sources = sorted(SRC_DIR.glob("*.c"), key=lambda path: path.stem.lower())
     if not sources:
@@ -79,6 +106,7 @@ def main() -> None:
     (DOCS_DIR / "README.md").write_text("\n".join(index), encoding="utf-8")
     for slug, info in programs:
         write_program_page(slug, info)
+    build_site()
 
 
 if __name__ == "__main__":
