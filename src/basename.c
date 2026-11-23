@@ -1,10 +1,18 @@
 #include "stdio.hpp"
 #include "stdlib.h"
 
-#define PROGRAM_NAME	"basename"
-#define PROGRAM_AUTHOR	"0x262d"
+#define PROGRAM_NAME			"basename"
+#define PROGRAM_AUTHOR			"0x262d"
+
+#define PROGRAM_USAGE			PROGRAM_NAME " NAME"
+#define PROGRAM_EXAMPLES		PROGRAM_NAME " path/to/file.ext        -> file.ext\n" \
+								PROGRAM_NAME " /programs/bin/lua       -> lua\n" \
+								PROGRAM_NAME " /config                 -> config\n"
+#define PROGRAM_DESCRIPTION		"Print NAME with any leading directory components removed."
 
 #include "config.h"
+
+#define PROGRAM_ARGUMENTS		PROGRAM_ARGUMENTS_VERSION "\n"
 
 int main(int argc, char **argv)
 {

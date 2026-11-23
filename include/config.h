@@ -18,5 +18,20 @@
 	printf("%s version: %s, build: %s\n", PROGRAM_NAME, D3SH_BUILD_VERSION, D3SH_BUILD_DATE); \
 	exit(0); \
 }}
+#define PROGRAM_ARGUMENTS_VERSION	 "-v, --version     print version"
+
+// dummy macros, will be read by docs build script
+#ifndef PROGRAM_USAGE
+	#define PROGRAM_USAGE			""
+#endif
+#ifndef PROGRAM_EXAMPLES
+	#define PROGRAM_EXAMPLES			""
+#endif
+#ifndef PROGRAM_DESCRIPTION
+	#define PROGRAM_DESCRIPTION		"unknown program"
+#endif
+#ifndef PROGRAM_ARGUMENTS
+	#define PROGRAM_ARGUMENTS		PROGRAM_ARGUMENTS_VERSION
+#endif
 
 #endif
