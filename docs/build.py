@@ -84,6 +84,12 @@ def build_site() -> None:
         slug = "index" if markdown_file.name == "README.md" else markdown_file.stem
         source = markdown_file.read_text(encoding="utf-8")
         rendered = markdown.markdown(source, extensions=["fenced_code", "codehilite", "tables"])
+        rendered = re.sub(
+            r'href="(?:\./)?README\.md(#[^\"]*)?"',
+            r'href="index.html\1"',
+            rendered,
+            flags=re.IGNORECASE,
+        )
         rendered = re.sub(r'href="([^\"]+)\.md(#[^\"]*)?"', r'href="\1.html\2"', rendered)
         title_match = re.search(r"^#\s+(.+)$", source, re.MULTILINE)
         title = html.escape(title_match.group(1) if title_match else "d3sh Shell Utilities")
